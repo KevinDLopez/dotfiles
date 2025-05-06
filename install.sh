@@ -7,7 +7,7 @@ echo "This script will create symlinks for your dotfiles and install oh-my-zsh i
 echo "Make sure to review the script before running it."
 
 # 1) Symlink top‑level files into your home directory:
-for file in .zshrc .p10k.zsh; do
+for file in .zshrc .p10k.zsh .gitconfig .gitignore_global .bash_profile; do
     target="$HOME/$file"
     [ -e "${target}" ] && mv "${target}" "${target}.bak"
     ln -s "${DOTFILES_DIR}/${file}" "${target}"
