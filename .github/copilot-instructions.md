@@ -13,7 +13,6 @@ I use oh-my-zsh,  p10k, brew and MacBook m2 pro.
 │   ├── .DS_Store
 │   └── custom
 │       ├── plugins
-│       │   ├── example
 │       │   ├── fzf-tab
 │       │   ├── z
 │       │   ├── zsh-autosuggestions
