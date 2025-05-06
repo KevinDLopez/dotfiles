@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -14,10 +13,11 @@ for file in .zshrc .p10k.zsh .gitignore_global .bash_profile; do
 done
 
 # 2) Ensure oh‑my‑zsh is installed:
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "Installing oh-my-zsh…"
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -- --unattended
-fi
+# if [ ! -d "$HOME/.oh-my-zsh" ]; then
+#     echo "Installing oh-my-zsh…"
+#     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -- --unattended
+# fi
+
 # Initialize oh-my-zsh submodules:
 git -C "$DOTFILES_DIR" submodule update --init --recursive
 
