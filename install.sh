@@ -22,6 +22,9 @@ fi
 git -C "$DOTFILES_DIR" submodule update --init --recursive
 
 # 3) Link your custom oh‑my‑zsh plugins/themes:
+if [ -d "$HOME/.oh-my-zsh/custom" ]; then
+    mv "$HOME/.oh-my-zsh/custom" "$HOME/.oh-my-zsh/custom.bak"
+fi
 mkdir -p "$HOME/.oh-my-zsh/custom"
 ln -snf "${DOTFILES_DIR}/.oh-my-zsh/custom/plugins" "$HOME/.oh-my-zsh/custom/plugins"
 ln -snf "${DOTFILES_DIR}/.oh-my-zsh/custom/themes" "$HOME/.oh-my-zsh/custom/themes"
