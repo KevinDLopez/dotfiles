@@ -19,7 +19,7 @@ This repository contains my personal dotfiles and configuration for macOS, inclu
 1. Clone the repository:
 
 ```sh
-git clone --recurse-submodules git@github.com:kevindlopez/dotfiles.git
+git clone --recurse-submodules https://github.com/KevinDLopez/dotfiles.git
 cd dotfiles 
 ```
 

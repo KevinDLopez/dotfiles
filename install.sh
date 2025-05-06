@@ -16,7 +16,7 @@ done
 # 2) Ensure oh‑my‑zsh is installed:
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing oh-my-zsh…"
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -- --unattended
 fi
 # Initialize oh-my-zsh submodules:
 git -C "$DOTFILES_DIR" submodule update --init --recursive
