@@ -174,6 +174,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias orbit-list-android-devices="/Applications/Expo\ Orbit.app/Contents/Resources/orbit-cli-arm64 list-devices -p android"
+alias orbit-list-ios-devices="/Applications/Expo\ Orbit.app/Contents/Resources/orbit-cli-arm64 list-devices -p ios"
+alias orbit-launch="/Applications/Expo\ Orbit.app/Contents/Resources/orbit-cli-arm64 install-and-launch"
 # Set up fzf key bindings and fuzzy completion
 # source <(fzf --zsh)
 
@@ -205,7 +208,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # For suggestions - zsh-autosuggestions
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#8a8a8a"  # Change suggestion color
+# export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#8a8a8a"  # Change suggestion color
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)  # Use both history and completion
 # export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=1000000  # Limit size for performance
 
@@ -234,3 +237,16 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# # Set Oh My Zsh theme conditionally
+# if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+#   ZSH_THEME=""  # Disable Powerlevel10k for Cursor
+#   PROMPT='%n: %~%# '
+#   RPROMPT=''
+# else
+#   ZSH_THEME="powerlevel10k/powerlevel10k"
+# fi
+
+
+# Load Oh My Zsh
+source $ZSH/oh-my-zsh.sh
