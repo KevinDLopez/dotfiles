@@ -141,11 +141,14 @@ plugins=(
     history # for history search
     colorize # for colorizing output
     colored-man-pages 
-    command-not-found  # for command-not-found plugin
+    # command-not-found  # for command-not-found plugin
     arduino-cli
+    postgres
+    redis-cli 
+    tmux 
+    vscode
 )
 
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -195,15 +198,17 @@ ZSH_COLORIZE_STYLE="colorful"
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # bun completions
 [ -s "/Users/kevin/.bun/_bun" ] && source "/Users/kevin/.bun/_bun"
 
+# homebrew 
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.local/bin:$PATH"
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+# go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
@@ -216,7 +221,8 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)  # Use both history and com
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 # export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin"
-
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Java
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
@@ -247,6 +253,12 @@ unset __conda_setup
 #   ZSH_THEME="powerlevel10k/powerlevel10k"
 # fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# uv - python package manager
+source $HOME/.local/bin/env
+alias claude="/Users/kevin/.claude/local/claude"
+ 
 # Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh

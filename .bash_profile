@@ -1,4 +1,9 @@
+# bun completions
+[ -s "/Users/kevin/.bun/_bun" ] && source "/Users/kevin/.bun/_bun"
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -18,3 +23,4 @@ if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 
+. "$HOME/.local/bin/env"
