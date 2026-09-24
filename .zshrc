@@ -200,7 +200,7 @@ export PATH="$HOME/.amplify/bin:$PATH"
 
 
 # bun completions
-[ -s "/Users/kevin/.bun/_bun" ] && source "/Users/kevin/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # homebrew 
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.local/bin:$PATH"
@@ -225,8 +225,12 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Java
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-export PATH="$JAVA_HOME/bin:$PATH"
+if JAVA_HOME=$(/usr/libexec/java_home -v 17 2>/dev/null) || JAVA_HOME=$(brew --prefix openjdk@17 2>/dev/null)/libexec/openjdk.jdk/Contents/Home && [ -d "$JAVA_HOME" ]; then
+  export JAVA_HOME
+  export PATH="$JAVA_HOME/bin:$PATH"
+else
+  unset JAVA_HOME
+fi
 
 
 # >>> conda initialize >>>
@@ -257,8 +261,7 @@ unset __conda_setup
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # uv - python package manager
-source $HOME/.local/bin/env
-alias claude="/Users/kevin/.claude/local/claude"
+[ -f "$HOME/.local/bin/env" ] && source "$HOME/.local/bin/env"
  
 # Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh

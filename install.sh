@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 set -e
 
 # Parse command line arguments
@@ -31,17 +32,21 @@ echo "Make sure to review the script before running it."
 
 
 
-# # 1) Ensure oh‑my‑zsh is installed:
-# if [ ! -d "$HOME/.oh-my-zsh" ]; then
-#     echo "Installing oh-my-zsh…"
-#     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -- --unattended
-# fi
+# 1) Ensure oh‑my‑zsh is installed (must run before step 3 creates ~/.oh-my-zsh/custom):
+if [ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+    echo "Installing oh-my-zsh…"
+    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+fi
 
 
 # 2) Symlink top‑level files into your home directory:
 for file in .zshrc .tmux.conf .p10k.zsh .gitignore_global .bash_profile; do
     target="$HOME/$file"
-    [ -e "${target}" ] && mv "${target}" "${target}.bak"
+    # Already linked from a previous run: leave the original .bak alone
+    [ "$(readlink "${target}")" = "${DOTFILES_DIR}/${file}" ] && continue
+    if [ -e "${target}" ] || [ -L "${target}" ]; then
+        mv "${target}" "${target}.bak"
+    fi
     ln -s "${DOTFILES_DIR}/${file}" "${target}"
 done
 
@@ -79,7 +84,12 @@ else
     echo "Skipping Tmux plugin installation. Use --tmux-plugins flag to install them."
 fi
 
-echo "All done! Restart your shell."
+# Point git at the global ignore file
+git config --global core.excludesfile "$HOME/.gitignore_global"
 
 # set zsh as default shell
-chsh -s $(which zsh)
+if [ "$SHELL" != "$(which zsh)" ]; then
+    chsh -s "$(which zsh)"
+fi
+
+echo "All done! Restart your shell."
